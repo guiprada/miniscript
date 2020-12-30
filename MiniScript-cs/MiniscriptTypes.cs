@@ -729,9 +729,10 @@ namespace Miniscript {
 			}
 
 			// check to see if there is an OnCopy Callback 
-			var onCopy = (result.Lookup(new ValString("OnCopy")));
-			if (onCopy != null)
+			var onCopy = (result.Lookup(new ValString("__OnCopy")));
+			if (onCopy.GetType() == typeof(ValWrapper<OnCopyFunc>))
 			{
+				
 				OnCopyFunc func = (onCopy as ValWrapper<OnCopyFunc>).UnWrapp();
 				func(result);
 			}
